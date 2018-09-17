@@ -12,6 +12,8 @@ export default class App extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleCompleteItem = this.handleCompleteItem.bind(this);
+    this.handleDeleteItem = this.handleDeleteItem.bind(this);
   }
 
   handleInputChange(event) {
@@ -21,8 +23,25 @@ export default class App extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     this.setState({
-      items: [...this.state.items, this.state.value]
+      items: [...this.state.items,
+      {
+        text: this.state.value,
+        completed: false,
+        key: Date.now()
+      }]
     });
+  }
+
+  handleDeleteItem(key) {
+
+  }
+  handleCompleteItem(key) {
+    const newItems = this.state.items.map((item) => {
+      if (item.key === key) {
+        item.completed = !item.completed;
+      }
+    });
+    this.setState({ items: newItems });
   }
 
   render() {
@@ -30,7 +49,8 @@ export default class App extends Component {
       <div className="App">
         <Form onSubmit={this.handleFormSubmit} onInputChange={this.handleInputChange}
           value={this.state.value} />
-        <ListItems items={this.state.items} />
+        <ListItems items={this.state.items} onDelete={this.handleDeleteItem}
+          onComplete={this.handleCompleteItem} />
       </div>
     );
   }
