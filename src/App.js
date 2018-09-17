@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import TodoList from './TodoList';
+import ListItems from './ListItems';
 
 export default class App extends Component {
   constructor(props) {
@@ -28,8 +28,9 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Form onSubmit={this.handleFormSubmit} onInputChange={this.handleInputChange} value={this.state.value} />
-        <TodoList items={this.state.items} />
+        <Form onSubmit={this.handleFormSubmit} onInputChange={this.handleInputChange}
+          value={this.state.value} />
+        <ListItems items={this.state.items} />
       </div>
     );
   }
