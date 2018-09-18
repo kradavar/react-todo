@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form';
 import ListItems from './ListItems';
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {
