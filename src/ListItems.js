@@ -5,7 +5,8 @@ export default class ListItems extends Component {
 
   render() {
     const items = this.props.items.map((item) => {
-      return <TodoItem onComplete={this.props.onComplete} onDelete={this.props.onDelete} item={item} />;
+      return <TodoItem onComplete={this.props.onComplete} onDelete={this.props.onDelete}
+        item={item} key={item.key} />;
     })
     return (
       <ul className="ListItems" >

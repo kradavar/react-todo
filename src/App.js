@@ -28,18 +28,24 @@ export default class App extends Component {
         text: this.state.value,
         completed: false,
         key: Date.now()
-      }]
+      }],
+      value: ""
     });
   }
 
   handleDeleteItem(key) {
-
+    const newItems = this.state.items.filter((item) => {
+      return (item.key !== key);
+    });
+    this.setState({ items: newItems });
   }
   handleCompleteItem(key) {
     const newItems = this.state.items.map((item) => {
       if (item.key === key) {
         item.completed = !item.completed;
-      }
+        return item;
+      } else { return item; }
+
     });
     this.setState({ items: newItems });
   }
