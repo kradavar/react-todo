@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
+import { Input } from "reactstrap";
 
 export default (props) => {
   let itemClasses = classNames({
@@ -7,7 +8,7 @@ export default (props) => {
   });
   return (
     <div className="todo-item">
-      <input type="checkbox" checked={props.item.completed} value={props.item.completed}
+      <Input type="checkbox" checked={props.item.completed} value={props.item.completed}
         onChange={() => props.onComplete(props.item.key)} />
       <li onClick={() => props.onDelete(props.item.key)}
         className={itemClasses}>

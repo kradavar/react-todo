@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from './Form';
 import ListItems from './ListItems';
 import Filter from './Filter';
-// import './App.css';
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -10,8 +10,14 @@ export default class App extends Component {
 
     this.state = {
       value: "",
-      items: [],
-      itemsToShow: [],
+      items: [
+        { text: "vbn", completed: false, key: 1537698803696 },
+        { text: " bninjb", completed: true, key: 1537698807757 }
+      ],
+      itemsToShow: [
+        { text: "vbn", completed: false, key: 1537698803696 },
+        { text: " bninjb", completed: true, key: 1537698807757 }
+      ],
       filter: "all"
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,7 +36,7 @@ export default class App extends Component {
         return this.filterDoneItems(items);
         break;
       default:
-        return this.state.items;
+        return items;
         break;
     }
   }
@@ -72,9 +78,11 @@ export default class App extends Component {
         item.completed = !item.completed;
         return item;
       } else { return item; }
-
     });
-    this.setState({ items: newItems });
+    this.setState({
+      items: newItems,
+      itemsToShow: this.filterItems(this.state.filter, newItems)
+    });
   }
   handleRadioChange(event) {
     if (event.target.value === 'todo') {
